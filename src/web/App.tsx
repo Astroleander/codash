@@ -6,15 +6,13 @@ import SolutionLayout from './SolutionLayout';
 const ViewRouter =  () => {
   const [route] = useHashRoute(location.hash);
   if (route === '') return <NavLayout />;
-  let algo = import('../code' + route);
-
-  return <React.Suspense fallback={<div>loading...</div>}>
-    <SolutionLayout />
-  </React.Suspense>
+  return <SolutionLayout route={route} />;
 }
 
 export default function App() {
   return (
-    <ViewRouter />
+    <article>
+      <ViewRouter />
+    </article>
   )
 }

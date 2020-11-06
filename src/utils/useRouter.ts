@@ -37,7 +37,6 @@ const useHistory = (initial) => {
   return [stack, pushHistory , popHistory];
 };
 
-
 export const useHashRoute = (hash: string) => {
   const [route, setRoute] = useState(hash);
   const [history, pushHistory, popHistory] = useHistory([location.hash]);
