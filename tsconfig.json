@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["src/*"]
+    },
     "outDir": "./dist",
     "target": "ES6",
     "module": "ES2020",
@@ -9,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
   },
   "include": [
-    "src/*",
+    "src/**/*",
     "externals.d.ts",
   ]
 }
