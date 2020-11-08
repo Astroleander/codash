@@ -1,19 +1,46 @@
 import { routeMeta } from "../web/router/RouteMeta";
 
+const parseProblemFolderName = (string) => {
+  const problemIndex = string.match(/\.\/(.*)\//)[1];
+  const problemIndexArray = problemIndex.split(/\./);
+  let classification, index, name, level;
+  if (problemIndexArray.length >= 3) {
+    [ classification, index, name, level ] = problemIndexArray;
+  }
+  return {
+    classification,
+    index,
+    name,
+    level
+  };
+}
+
 export function generateTag(string): string[] {
-  return ['tag', 'tag2'];
+  const result = [];
+  /** capture /<xxx>.n.name/ */
+  const classification = parseProblemFolderName(string).classification;
+  if (classification) result.push(classification);
+
+  /** capture solution.<xxx>.<xxx>.ts */
+  const matches = string.match(/solution\.(.*)*\.ts$/);
+
+  /** get tags */
+  result.push(...matches[0].split(/\./).slice(1, -1));
+
+  return result;
 }
 
 export function generateName(string): string {
-  return 'title';
+  return parseProblemFolderName(string).name;
 }
 
 export function generateIndex(string): string {
-  return 'index';
+  return parseProblemFolderName(string).index;
 }
 
 export function generateLevel(string): string {
-  return 'level';
+  const level = parseProblemFolderName(string).level;
+  return level ? level : 'unknown'
 }
 
 /**
