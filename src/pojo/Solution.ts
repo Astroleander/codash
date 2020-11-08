@@ -1,6 +1,6 @@
 const SolutionWrapper = {
-  create: (func: Function, params: any[]) => {
-    return new Solution(func, params);
+  create: (func: Function, params: any[], content = null) => {
+    return new Solution(func, params, content);
   }
 }
 
@@ -8,7 +8,7 @@ class Solution {
   solution: Function;
   params: any[];
 
-  constructor(func: Function, params: any[]) {
+  constructor(func: Function, params: any[], content: {}|null) {
     this.solution = func;
     this.params = params;
   }

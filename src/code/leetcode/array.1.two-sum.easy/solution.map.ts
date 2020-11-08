@@ -1,4 +1,4 @@
-import { Solution } from '../../../web/pojo/Solution';
+import { Solution } from '@/pojo/Solution';
 
 function twoSum(nums: number[], target: number): number[] {
   /** 
