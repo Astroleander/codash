@@ -1,11 +1,11 @@
 import React from 'react';
-import { ForwardButton, BackButton, CodeButton, ReloadButton } from './buttons'
+import { HomeButton, ForwardButton, BackButton, CodeButton, ReloadButton } from './buttons'
 import cls from 'classnames';
 import './index.less';
 
 const Buttons = {
   forward:  ForwardButton,
-  back:     BackButton,
+  back:     HomeButton,
   code:     CodeButton,
   reload:   ReloadButton,
 }
