@@ -25,7 +25,9 @@ export function generateTag(string): string[] {
   const matches = string.match(/solution\.(.*)*\.ts$/);
 
   /** get tags */
-  result.push(...matches[0].split(/\./).slice(1, -1));
+  if (matches) {
+    result.push(...matches[0].split(/\./).slice(1, -1));
+  }
 
   return result;
 }

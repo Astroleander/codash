@@ -24,6 +24,6 @@ const generateMeta = (requires, prefix) => {
   return [metaList, webpackLazyLoader ];
 }
 
-const [ routeMeta, webpackLazyLoader ] = generateMeta(require.context('/src/code/leetcode', true, /solution\..*\.ts$/, 'lazy'), 'leetcode');
+const [ routeMeta, webpackLazyLoader ] = generateMeta(require.context('/src/code/leetcode', true, /solution(\..*)?\.ts$/, 'lazy'), 'leetcode');
 
 export { routeMeta, webpackLazyLoader };
