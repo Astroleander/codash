@@ -1,4 +1,4 @@
-import { Solution } from '@/pojo/Solution';
+import { Solution, RESULT_TYPE } from '@/pojo/Solution';
 
 function removeElement(nums: number[], target: number): number {
   if (nums.length === 0) return 0;
@@ -20,5 +20,5 @@ function removeElement(nums: number[], target: number): number {
  };
 
  export default Solution.create(removeElement, [[3,2,1,2,1,3,2,1], 3], {
-   outputType: 'Pointer'
+   outputType: RESULT_TYPE.POINTER
  });

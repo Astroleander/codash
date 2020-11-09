@@ -7,10 +7,12 @@ const SolutionWrapper = {
 class Solution {
   solution: Function;
   params: any[];
+  configs: object;
 
   constructor(func: Function, params: any[], content: {}|null) {
     this.solution = func;
     this.params = params;
+    this.configs = content;
   }
 
   setSolution(solution: Function) {
@@ -18,6 +20,11 @@ class Solution {
   }
 }
 
+enum RESULT_TYPE {
+  POINTER
+}
+
 export {
-  SolutionWrapper as Solution
+  SolutionWrapper as Solution,
+  RESULT_TYPE,
 };

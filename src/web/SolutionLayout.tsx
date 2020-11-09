@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { RESULT_TYPE } from '../pojo/Solution';
+
+const Result = ({result, params, configs}) => {
+  if (configs?.outputType === RESULT_TYPE.POINTER) {
+    /** 默认第一个输入是数组, 这个地方好像确实没什么办法 */
+    result = params[0].slice(0, result);
+  }
+  return <div>
+    {String(result)}
+  </div>
+}
 
 const CodeBoard = ({ path }) => {
   const [solution, setSolution] = useState(null);
   const [result, setResult] = useState(null);
   const [params, setParams] = useState(null);
+  const [configs, setConfigs] = useState(null);
 
   useEffect(() => {
     import('../code' + path).then(m => {
-      const { solution, params } = m.default;
+      const { solution, params, configs } = m.default;
       /** 注意, setState 本身对接受 function 有特殊的处理 */
       setSolution(() => solution);
       setParams(params);
       setResult(solution(...params));
+      setConfigs(configs);
     });
   }, []);
 
@@ -19,7 +32,7 @@ const CodeBoard = ({ path }) => {
   return (<>
     <pre>{String(solution)}</pre>
     <div>Inputs: {params.map(each => String(each))}</div>
-    <div>Result: {String(result)}</div>
+    <Result result={result} params={params} configs={configs}></Result>
   </>);
 }
 
