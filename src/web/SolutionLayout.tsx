@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RESULT_TYPE } from '../pojo/Solution';
+import { RESULT_TYPE, INPUT_TYPE } from '../pojo/Solution';
 import FloatButtonGroup from '@/web/components/FloatButtonGroup/index';
 
 import './styles/layout_solution.less';
@@ -18,7 +18,7 @@ const Result = ({result, params, configs}) => {
   }
   return <section className='result'>
     <h1>Result</h1>
-    {String(result)}
+    {JSON.stringify(result)}
   </section>
 }
 
@@ -30,7 +30,7 @@ const Inputs = ({params, configs}) => {
         params.map((each, idx) => (
           <div key={idx}>
             <h2>arguments[{idx}]</h2>
-            <code key={idx}>{JSON.stringify(each)}</code>
+            <pre key={idx}>{JSON.stringify(each)}</pre>
           </div>
         ))
       }
@@ -42,6 +42,7 @@ const CodeBoard = ({ path }) => {
   const [solution, setSolution] = useState(null);
   const [result, setResult] = useState(null);
   const [params, setParams] = useState(null);
+  const [originParams, setOriginParams] = useState(null);
   const [configs, setConfigs] = useState(null);
 
   useEffect(() => {
@@ -50,16 +51,18 @@ const CodeBoard = ({ path }) => {
       /** 注意, setState 本身对接受 function 有特殊的处理 */
       setSolution(() => solution);
       setParams(params);
+      setOriginParams(JSON.parse(JSON.stringify(params)));
       setResult(solution(...params));
       setConfigs(configs);
     });
   }, []);
 
   if (!solution && !result || !params ) return null;
+  const inputs = configs?.inputType === INPUT_TYPE.MUTABLE ? originParams : params;
   return (<>
     <Solution solution={solution}></Solution>
-    <Inputs params={params} configs={configs}></Inputs>
-    <Result result={result} params={params} configs={configs}></Result>
+    <Inputs params={inputs} configs={configs}></Inputs>
+    <Result params={inputs} configs={configs} result={result} ></Result>
   </>);
 }
 
