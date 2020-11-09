@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RESULT_TYPE } from '../pojo/Solution';
+import FloatButtonGroup from '@/web/components/FloatButtonGroup/index';
+
 import './styles/layout_solution.less';
 
 const Solution = ({solution}) => (
@@ -67,5 +69,6 @@ const CodeBoard = ({ path }) => {
 export default ({ route }) => {
   return (<>
     <CodeBoard path={route}/>
+    <FloatButtonGroup />
   </>)
 }

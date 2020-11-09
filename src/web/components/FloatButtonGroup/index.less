@@ -1,0 +1,18 @@
+@directions: top, right, bottom, left;
+.make-directions(@i: 0) when (@i < length(@directions)) {
+  @item: extract(@directions, @i);
+  /** real styles here */
+  .fb-group.@{item} {
+    @{item}: 0px;
+  }
+  .make-directions(@i+1)
+}
+.make-directions();
+
+.fb-group {
+  &.bottom, &.top, &.left, &.right { position: fixed; }
+  overflow: hidden;
+  display: flex;
+  padding: 20px;
+}
+

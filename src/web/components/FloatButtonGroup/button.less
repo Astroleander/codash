@@ -1,0 +1,65 @@
+.fb-button {
+  @normal-size: 36px;
+  width: @normal-size;
+  height: @normal-size;
+  line-height: @normal-size;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 16px;
+  border: none;
+  z-index: 9999;
+  border-radius: 999px;
+  box-shadow: 2px 2px 2px #999E;
+  &.react-style {
+    background: #212121;
+    color: #61DBFB;
+    svg {
+      fill: #61DBFB;
+    }
+    .cross {
+      color: #61DBFB;
+    }    
+    &:active {
+      background: #61DBFB;
+      .cross {
+        color: #212121;
+      }
+    }
+
+  };
+
+  cursor: pointer;
+  outline: none;
+
+  transition: 0.15s all;
+
+  &:active {
+    background: #333;
+    color: #999;
+    transition: 0.15s all;
+  }
+
+  * {
+    user-select: none;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.fb-button {
+  &#reload {
+    svg {
+      width: 50%;
+      height: 50%;
+    }
+  }
+  &#back {
+    svg{
+      width: 33%;
+      height: 33%;
+    }
+  }
+}
