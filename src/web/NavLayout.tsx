@@ -3,7 +3,7 @@ import ListItem from './components/ListItem';
 import { routeMeta } from './router/RouteMeta';
 import { useHashRouter } from '../utils/useRouter';
 
-import './styles/common.less';
+import './styles/layout_nav.less';
 
 const RouteList = () => {
   const { routes, go } = useHashRouter(routeMeta);

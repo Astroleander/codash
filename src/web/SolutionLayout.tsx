@@ -1,14 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { RESULT_TYPE } from '../pojo/Solution';
+import './styles/layout_solution.less';
+
+const Solution = ({solution}) => (
+  <section className='solution'>
+    <h1>Solution</h1>
+    <pre>{String(solution)}</pre>
+  </section>
+)
 
 const Result = ({result, params, configs}) => {
   if (configs?.outputType === RESULT_TYPE.POINTER) {
     /** 默认第一个输入是数组, 这个地方好像确实没什么办法 */
     result = params[0].slice(0, result);
   }
-  return <div>
+  return <section className='result'>
+    <h1>Result</h1>
     {String(result)}
-  </div>
+  </section>
+}
+
+const Inputs = ({params, configs}) => {
+  return <section className='inputs'>
+    <h1>Inputs</h1>
+    <div className='content'>
+      {
+        params.map((each, idx) => (
+          <div key={idx}>
+            <h2>arguments[{idx}]</h2>
+            <code key={idx}>{JSON.stringify(each)}</code>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 }
 
 const CodeBoard = ({ path }) => {
@@ -30,8 +55,8 @@ const CodeBoard = ({ path }) => {
 
   if (!solution && !result || !params ) return null;
   return (<>
-    <pre>{String(solution)}</pre>
-    <div>Inputs: {params.map(each => String(each))}</div>
+    <Solution solution={solution}></Solution>
+    <Inputs params={params} configs={configs}></Inputs>
     <Result result={result} params={params} configs={configs}></Result>
   </>);
 }

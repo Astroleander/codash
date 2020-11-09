@@ -21,7 +21,8 @@ class Solution {
 }
 
 enum RESULT_TYPE {
-  POINTER
+  POINTER,
+  TREE,
 }
 
 export {
