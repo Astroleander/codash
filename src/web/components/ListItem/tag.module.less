@@ -8,7 +8,37 @@
   background-color: white;
   cursor: pointer;
   user-select: none;
+  display: inline-block;
+  // text-transform: capitalize;
   &:hover {
+    transform: rotate(2deg);
     box-shadow: .1em .1em 1em darkgray;
   }
 }
+
+@data_structure: #666;
+@algorithm: #696;
+@helper: #1565c0;
+
+@tag_set: {
+  time_limit:  #f44336, white;
+  
+  slide_window: @algorithm, white;
+  fast_and_slow_pointer: @algorithm, white;
+  
+  map: @helper, white;
+  set: @helper, white;
+  table: @helper, white;
+
+  tree: @data_structure, white;
+  array:  @data_structure, white;
+  link_list: @data_structure, white;
+  string: @data_structure, white;
+};
+
+each(@tag_set, #(@v, @k) {
+  .tag-@{k} {
+    background-color: extract(@v, 1);
+    color: extract(@v, 2);
+  }
+});
