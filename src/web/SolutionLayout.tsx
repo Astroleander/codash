@@ -39,6 +39,7 @@ const Inputs = ({params, configs}) => {
 }
 
 const CodeBoard = ({ path }) => {
+
   const [solution, setSolution] = useState(null);
   const [result, setResult] = useState(null);
   const [params, setParams] = useState(null);
@@ -54,6 +55,8 @@ const CodeBoard = ({ path }) => {
       setOriginParams(JSON.parse(JSON.stringify(params)));
       setResult(solution(...params));
       setConfigs(configs);
+    }).catch(e => {
+      window.location.hash = '';
     });
   }, []);
 
