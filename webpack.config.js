@@ -42,6 +42,20 @@ module.exports = {
         use: StandardCssLoader.concat(
           { loader: 'less-loader' }
         )
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: "html-loader"
+          },
+          {
+            loader: "markdown-loader",
+            options: {
+              /* your options here , see marked get more*/
+            }
+          }
+        ]
       }
     ]
   },
