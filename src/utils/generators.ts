@@ -17,13 +17,12 @@ const parseProblemFolderName = (string) => {
 
 export function generateTag(string): string[] {
   const result = [];
-  /** capture /<xxx>.n.name/ */
+  /** capture "/<xxx>.n.name/" */
   const classification = parseProblemFolderName(string).classification;
   if (classification) result.push(classification);
 
-  /** capture solution.<xxx>.<xxx>.ts */
-  const matches = string.match(/solution\.(.*)*\.ts$/);
-
+  /** capture "solution.<xxx>.<xxx>.ts" */
+  const matches = string.match(/solution(?<note>.*?)\.(?<tags>.*)*\.ts$/);
   /** get tags */
   if (matches) {
     result.push(...matches[0].split(/\./).slice(1, -1));
