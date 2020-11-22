@@ -56,7 +56,11 @@ const CodeBoard = ({ path }) => {
       setResult(solution(...params));
       setConfigs(configs);
     }).catch(e => {
-      window.location.hash = '';
+      if (e.message.startsWith('Cannot find module')) {
+        window.location.hash = '';
+      } else {
+        console.error(e)
+      }
     });
   }, []);
 
